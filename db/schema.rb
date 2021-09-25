@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_25_090022) do
+ActiveRecord::Schema.define(version: 2021_09_25_093221) do
+
+  create_table "games", force: :cascade do |t|
+    t.integer "player_1_id", null: false
+    t.integer "player_2_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["player_1_id"], name: "index_games_on_player_1_id"
+    t.index ["player_2_id"], name: "index_games_on_player_2_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,4 +33,6 @@ ActiveRecord::Schema.define(version: 2021_09_25_090022) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "games", "users", column: "player_1_id"
+  add_foreign_key "games", "users", column: "player_2_id"
 end
