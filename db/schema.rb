@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_25_093221) do
+ActiveRecord::Schema.define(version: 2021_09_25_180803) do
+
+  create_table "gameplay_attempts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "game_id", null: false
+    t.integer "attempt_identifier"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_id"], name: "index_gameplay_attempts_on_game_id"
+    t.index ["user_id"], name: "index_gameplay_attempts_on_user_id"
+  end
 
   create_table "games", force: :cascade do |t|
     t.integer "starter_id", null: false
@@ -33,6 +43,8 @@ ActiveRecord::Schema.define(version: 2021_09_25_093221) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "gameplay_attempts", "games"
+  add_foreign_key "gameplay_attempts", "users"
   add_foreign_key "games", "users", column: "participator_id"
   add_foreign_key "games", "users", column: "starter_id"
 end
