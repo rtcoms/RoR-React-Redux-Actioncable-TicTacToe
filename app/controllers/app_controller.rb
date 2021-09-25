@@ -4,5 +4,6 @@ class AppController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @user_games
   end
 end
