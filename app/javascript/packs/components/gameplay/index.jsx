@@ -11,7 +11,7 @@ const Gameplay= () => {
 }
 
 Gameplay.defaultProps = {
-  name: 'Tic-Tac-Toe'
+  name: 'Tic-Tac-Toe' 
 };
 
 Gameplay.propTypes = {
