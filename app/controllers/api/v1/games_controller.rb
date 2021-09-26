@@ -9,8 +9,9 @@ class Api::V1::GamesController < ApplicationController
   end
 
   def show
+    @game = Game.find(params[:id])
     @game_state = Game.find(params[:id]).state
 
-    render json: { state: @game_state }, status: :ok
+    render json: {game: @game, state: @game_state }, status: :ok
   end
 end

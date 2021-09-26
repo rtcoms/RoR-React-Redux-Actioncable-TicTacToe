@@ -14,11 +14,13 @@ const Gameplay= () => {
     return <h3>Loading games ...</h3>;
   };
 
-  debugger
-
   return (<React.Fragment>
-            <h1>Welcome to Gameplay</h1>
+            <h1>Tic-Tac_Toe Game # {game.game.id}</h1>
+            <b>starter player moves: {game.state[game.game.starter_id]}</b><br/>
+            <b>participator player moves: {game.state[game.game.participator_id]}</b><br/>
+            <br/><br/><br/>
             <Link to="/app/games">Games Listing</Link>
+
           </React.Fragment>);
 }
 
