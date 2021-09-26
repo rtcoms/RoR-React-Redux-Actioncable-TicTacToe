@@ -7,6 +7,7 @@ class GameplayAttempt < ApplicationRecord
   private
 
   def bradcast_game_state
-    ActionCable.server.broadcast("gameplay_channel_#{game.id}", game.state)
+    {game: game, state: game.state}
+    ActionCable.server.broadcast("gameplay_channel_#{game.id}", {game: game, state: game.state})
   end
 end

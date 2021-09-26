@@ -19,7 +19,13 @@ const Gamelisting = () => {
             <h1>Welcome to Games listing</h1>
             <h3>Active Games</h3>
             {games.active.map(game => (
-                <Link to={`/app/gameplay/${game.id}`}>Game #{game.id}</Link>
+                <Link to={`/app/gameplay/${game.id}`} key={`game-${game.id}`}>Game #{game.id}</Link>
+             ))}
+
+
+            <h3>Active Games</h3>
+            {games.available.map(game => (
+                <Link to={`/app/gameplay/${game.id}`} key={`game-${game.id}`}>Game #{game.id}</Link>
              ))}
 
           </React.Fragment>);

@@ -4,13 +4,15 @@ const gameplayLogic = kea({
   actions: {
     loadGame: (gameId) => (gameId),
     setGame: (game) => (game),
-    setFetchError: (error) => ({ error })
+    setFetchError: (error) => ({ error }),
+    receivedGameUpdate: (game) => (game)
   },
 
   reducers: {
     gameId: [1],
     game: [{}, {
-      setGame: (_, payload) => payload
+      setGame: (_, payload) => payload,
+      receivedGameUpdate: (_, payload) => payload,
     }],
     isLoading: [true, {
       setGame: () => false,
