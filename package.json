@@ -17,6 +17,7 @@
     "react-router-dom": "^5.3.0",
     "redux": "^4.1.1",
     "reselect": "^4.0.0",
+    "swr": "^1.0.1",
     "turbolinks": "^5.2.0",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12"
