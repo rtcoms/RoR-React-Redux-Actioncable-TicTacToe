@@ -27,7 +27,7 @@ const gameplayLogic = kea({
 
       const response = await window.fetch(url)
       const json = await response.json()
-      console.log("LISTENER MAKING API CALL");
+      console.log("GAMEPLAY LISTENER MAKING API CALL");
       console.log(response.status)
       console.log(json);
 
@@ -41,7 +41,7 @@ const gameplayLogic = kea({
 
   events: ({ actions, values }) => ({
     afterMount: () => {
-      console.log('COMPONENT MOUNTED');
+      console.log('GAMEPLAY COMPONENT MOUNTED');
       actions.loadGame(values.gameId);
     }
   })
