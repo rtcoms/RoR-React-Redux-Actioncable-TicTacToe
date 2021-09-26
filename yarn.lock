@@ -1019,6 +1019,16 @@
     webpack-cli "^3.3.12"
     webpack-sources "^1.4.3"
 
+"@thrash-industries/react-actioncable-provider@^3.0.6":
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/@thrash-industries/react-actioncable-provider/-/react-actioncable-provider-3.0.6.tgz#f139885acc4772ffb68d589045dd1e494aa72c17"
+  integrity sha512-6xCViHEGW+Hel5BScJaV8TZE6cKm0y6QQxfliXS13cGKiTvC0Bd6odaUTUdg29Ce2sMGSyK7MHmO0cyYYjiIZQ==
+  dependencies:
+    actioncable "^5.2.6"
+    create-react-class "^15.6.2"
+    prop-types "^15.6.0"
+    react "^16.9.0"
+
 "@types/glob@^7.1.1":
   version "7.1.4"
   resolved "https://registry.yarnpkg.com/@types/glob/-/glob-7.1.4.tgz#ea59e21d2ee5c517914cb4bc8e4153b99e566672"
@@ -1256,6 +1266,11 @@ acorn@^6.4.1:
   version "6.4.2"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.4.2.tgz#35866fd710528e92de10cf06016498e47e39e1e6"
   integrity sha512-XtGIhXwF8YM8bJhGxG5kXgjkEuNGLTkoYqVE+KMR+aspr4KGYmKYg7yUe3KghyQ9yheNwLnjmzh/7+gfDBmHCQ==
+
+actioncable@^5.2.6:
+  version "5.2.6"
+  resolved "https://registry.yarnpkg.com/actioncable/-/actioncable-5.2.6.tgz#cea30647183524f3bae8c2a78fa6ecd6d4dbc70c"
+  integrity sha512-ofLHm57nN24zghkl+tQe6IVrZeSJ655lNLQjNQJvtQkeTDqlF30McuMB4o9DqpxdHgW/w0RNWaAQHB6VPlleNQ==
 
 aggregate-error@^3.0.0:
   version "3.1.0"
@@ -2200,6 +2215,14 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
     ripemd160 "^2.0.0"
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
+
+create-react-class@^15.6.2:
+  version "15.7.0"
+  resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.7.0.tgz#7499d7ca2e69bb51d13faf59bd04f0c65a1d6c1e"
+  integrity sha512-QZv4sFWG9S5RUvkTYWbflxeZX+JG7Cz0Tn33rQBJ+WFQTqTfUTjMjiv9tnfXazjsO5r0KhPs+AqCjyrQX6h2ng==
+  dependencies:
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
 
 cross-spawn@^6.0.0, cross-spawn@^6.0.5:
   version "6.0.5"
@@ -5583,7 +5606,7 @@ promise-inflight@^1.0.1:
   resolved "https://registry.yarnpkg.com/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
   integrity sha1-mEcocL8igTL8vdhoEputEsPAKeM=
 
-prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -5774,6 +5797,15 @@ react-router@5.2.1:
     react-is "^16.6.0"
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
+
+react@^16.9.0:
+  version "16.14.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
+  integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
 
 react@^17.0.2:
   version "17.0.2"
