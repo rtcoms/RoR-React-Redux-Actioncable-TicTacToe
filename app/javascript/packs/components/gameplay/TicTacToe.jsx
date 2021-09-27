@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Spot from './Spot.jsx';
+import { Row, Col, Container } from 'react-bootstrap';
 
 const TicTacToe= ({game}) => {
   console.log(`TIC TAC TOE`);
@@ -15,9 +16,13 @@ const TicTacToe= ({game}) => {
 
             <div id="main">
               <input id="disp" value="TURN" readOnly />
-              {[1,2,3,4,5,6,7,8,9].map(index => {
-                return <Spot key={`spot-${index}`} spotIndex={index} game={game} />
-              })}
+              <Container>
+                <Row className='row-cols-3'>
+                  {[1,2,3,4,5,6,7,8,9].map(index => {
+                    return <Col className='spot' key={`spot-col-${index}`}><Spot key={`spot-${index}`} spotIndex={index} game={game} /></Col>
+                  })}
+                </Row>
+              </Container>
             </div>
           </React.Fragment>);
 }
