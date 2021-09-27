@@ -7,6 +7,8 @@ import PropTypes from 'prop-types'
 import Gamelisting from './components/gamelisting/index.jsx';
 import Gameplay from './components/gameplay/index.jsx';
 import { useUser } from './helper.js';
+import UserContext from './userContext.js'
+// export const UserContext = React.createContext();
 
 
 const App = props => {
@@ -17,10 +19,12 @@ const App = props => {
   return (<div>
     <h1>Current User: {currentUser.email}</h1>
     <Provider>
-      <Router>
-        <Route path="/app/games" exact component={Gamelisting} />
-        <Route path="/app/gameplay/:gameId" exact component={Gameplay} />
-      </Router>
+      <UserContext.Provider value={currentUser}>
+        <Router>
+          <Route path="/app/games" exact component={Gamelisting} />
+          <Route path="/app/gameplay/:gameId" exact component={Gameplay} />
+        </Router>
+      </UserContext.Provider>
     </Provider>
   </div>);
 }

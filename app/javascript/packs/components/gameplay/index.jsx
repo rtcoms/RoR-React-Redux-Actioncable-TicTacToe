@@ -6,6 +6,7 @@ import { useValues, useActions } from 'kea';
 import gameplayLogic from '../logic/gameplay_logic.js';
 import ActionCable from "actioncable";
 import { ActionCableProvider, ActionCableConsumer } from '@thrash-industries/react-actioncable-provider';
+import TicTacToe from './TicTacToe.jsx'
 
 // const cable = ActionCable.createConsumer("ws://localhost:3000/websocket");
 
@@ -15,8 +16,6 @@ const Gameplay= () => {
   console.log('GAMELISTING PAGE')
   const { game, isLoading } = useValues(gameplayLogic);
   const { loadGame, receivedGameUpdate } = useActions(gameplayLogic);
-
-
 
   const handleReceivedMEssage = (message) => {
     console.log('HANDLING RECEIVED MESSAGE');
@@ -40,23 +39,9 @@ const Gameplay= () => {
                 onConnected={() => console.log('Action cable connected')}
                 onDisconnected={() => console.log('Action cable disconnected')}
                 onRejected={() => console.log('Action cable rejected')} >
-                <h1>Tic-Tac_Toe Game # {game.game.id}</h1>
-                <b>starter player moves: {game.state[game.game.starter_id]}</b><br/>
-                <b>participator player moves: {game.state[game.game.participator_id]}</b><br/>
                 <br/><br/><br/>
 
-                <div id="main">
-                  <input id="disp" value="TURN" readOnly />
-                  <div id="x1y1" className="boxes"></div>
-                  <div id="x2y1" className="boxes"></div>
-                  <div id="x3y1" className="boxes"></div>
-                  <div id="x1y2" className="boxes"></div>
-                  <div id="x2y2" className="boxes"></div>
-                  <div id="x3y2" className="boxes"></div>
-                  <div id="x1y3" className="boxes"></div>
-                  <div id="x2y3" className="boxes"></div>
-                  <div id="x3y3" className="boxes"></div>
-                </div>
+                <TicTacToe game={game}/>
                 <Link to="/app/games">Games Listing</Link>
                 </ActionCableConsumer>
             </ActionCableProvider>

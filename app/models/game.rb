@@ -8,12 +8,18 @@ class Game < ApplicationRecord
 
 
   def state
-    #TODO: Fix user_for_current_attempt_id
     state = {}
     state[starter.id] = gameplay_attempts.where(user: starter).map(&:attempt_identifier)
     state[participator.id] = gameplay_attempts.where(user: participator).map(&:attempt_identifier) if participator
-    state[:user_for_current_attempt] = [starter_id, participator_id].compact.sample
+    state[:user_for_current_attempt] = player_for_next_move
 
     state
+  end
+
+
+  private
+
+  def player_for_next_move
+    ([starter, participator] - [gameplay_attempts.last&.user]).first
   end
 end
