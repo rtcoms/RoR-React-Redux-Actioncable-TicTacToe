@@ -14,4 +14,10 @@ class Api::V1::GamesController < ApplicationController
 
     render json: {game: @game, state: @game_state }, status: :ok
   end
+
+  def create
+    @game = Game.create!(starter: current_user)
+
+    render json: @game, status: :ok
+  end
 end

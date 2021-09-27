@@ -9,7 +9,9 @@ const gameplayLogic = kea({
   },
 
   reducers: {
-    gameId: [1],
+    gameId: [null, {
+      loadGame: (_, gameId) => gameId,
+    }],
     game: [{}, {
       setGame: (_, payload) => payload,
       receivedGameUpdate: (_, payload) => payload,
@@ -41,12 +43,12 @@ const gameplayLogic = kea({
     }
   }),
 
-  events: ({ actions, values }) => ({
-    afterMount: () => {
-      console.log('GAMEPLAY COMPONENT MOUNTED');
-      actions.loadGame(values.gameId);
-    }
-  })
+  // events: ({ actions, values }) => ({
+  //   afterMount: () => {
+  //     console.log('GAMEPLAY COMPONENT MOUNTED');
+  //     actions.loadGame(values.gameId);
+  //   }
+  // })
 })
 
 export default gameplayLogic;

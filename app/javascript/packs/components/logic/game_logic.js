@@ -3,13 +3,22 @@ import { kea } from 'kea'
 const gameLogic = kea({
   actions: {
     loadGames: true,
+    createGame: true,
     setGames: (games) => (games),
-    setFetchError: (error) => ({ error })
+    setFetchError: (error) => ({ error }),
+    addGame: (game) => (game)
   },
 
   reducers: {
-    games: [{}, {
-      setGames: (_, payload) => payload
+    games: [[], {
+      setGames: (_, payload) => payload,
+      addGame: (state, game) => {
+        console.log(state);
+        console.log(game);
+        console.log('GAME ADDED');
+
+        return {...state, active: [...state.active, game]};
+      }
     }],
     isLoading: [true, {
       setGames: () => false,
@@ -22,19 +31,37 @@ const gameLogic = kea({
 
   listeners: ({ actions }) => ({
     loadGames: async () => {
-      const url = 'http://localhost:3000/api/v1/games'
+      const url = 'http://localhost:3000/api/v1/games';
 
       const response = await window.fetch(url)
-      const json = await response.json()
+      const data = await response.json()
       console.log("LISTENER MAKING API CALL");
       console.log(response.status)
-      console.log(json);
+      console.log(data);
 
       if (response.status === 200) {
-        actions.setGames(json);
+        actions.setGames(data);
       } else {
-        actions.setFetchError(json.message);
+        actions.setFetchError(data.message);
       }
+    },
+
+    createGame: async () => {
+      const url = 'http://localhost:3000/api/v1/games';
+      const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+
+      const requestOptions = { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrf } };
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
+      console.log("LISTENER MAKING API CALL TO CREATE GAME");
+      console.log(response.status)
+      console.log(data);
+      if (response.status === 200) {
+        actions.addGame(data);
+      } else {
+        actions.setFetchError(data.message);
+      }
+
     }
   }),
 

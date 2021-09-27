@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useParams } from "react-router-dom";
 import { useValues, useActions } from 'kea';
@@ -14,13 +14,19 @@ const Gameplay= () => {
   console.log(`GAME ID PROP: ${gameId}`)
   console.log('GAMELISTING PAGE')
   const { game, isLoading } = useValues(gameplayLogic);
-  const { receivedGameUpdate } = useActions(gameplayLogic);
-  console.log(game);
+  const { loadGame, receivedGameUpdate } = useActions(gameplayLogic);
+
+
 
   const handleReceivedMEssage = (message) => {
     console.log('HANDLING RECEIVED MESSAGE');
     receivedGameUpdate(message)
   };
+
+  useEffect(() => {
+    // Update the document title using the browser API
+    loadGame(gameId);
+  }, []);
 
 
   if(isLoading) {
