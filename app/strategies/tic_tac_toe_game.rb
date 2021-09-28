@@ -29,7 +29,7 @@ class TicTacToeGame
 
   def game_status
     return :started if all_attempts.size.zero?
-    return :finished_with_result if @player_attempts.values || has_winning_combinations?(@player_attempts.values.last)
+    return :finished_with_result if has_winning_combinations?(@player_attempts.values.first) || has_winning_combinations?(@player_attempts.values.last)
     return :finished_with_noresult if available_spots.size == all_attempts.size
     return :in_progress
   end
@@ -59,6 +59,6 @@ class TicTacToeGame
   def has_winning_combinations?(attempt_identifiers)
     player_attempt_set = Set.new(attempt_identifiers)
 
-    winning_combinations.any?{ |comination| combination.subset?(player_attempt_set) }
+    winning_combinations.any?{ |combination| combination.subset?(player_attempt_set) }
   end
 end

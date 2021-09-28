@@ -16,7 +16,7 @@ const TicTacToe= ({game}) => {
             <br/><br/><br/>
 
             <div id="main">
-              <input id="disp" value={game.state.user_for_current_attempt.email} readOnly />'s TURN
+              { (game.game.status == 'started' || game.game.status == 'in_progress') &&  <div>{game.state.user_for_current_attempt.email}'s TURN</div>}
               <Container>
                 <Row className='row-cols-3'>
                   {[1,2,3,4,5,6,7,8,9].map(index => {

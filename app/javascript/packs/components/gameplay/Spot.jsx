@@ -18,6 +18,10 @@ const Spot= ({spotIndex, game}) => {
     return <div className="boxes checkedWhite"></div>;
   }
 
+  if(['finished_with_result', 'finished_without_result'].includes(game.game.status)) {
+    return <div className="boxes"></div>;
+  }
+
   if(currentUser.id !== game.state.user_for_current_attempt.id) {
     return <div className="boxes"></div>;
   }

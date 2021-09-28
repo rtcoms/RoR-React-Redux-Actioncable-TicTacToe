@@ -11,7 +11,7 @@ class Game < ApplicationRecord
 
   aasm column: :status, enum: true do
     state :waiting_for_participants, initial: true
-    state :started, :in_progress, :winner, :drawn
+    state :started, :in_progress, :finished_with_result, :finished_with_noresult
 
     event :start do
       transitions from: :waiting_for_participants, to: :started
@@ -47,13 +47,15 @@ class Game < ApplicationRecord
     }
   end
 
-  private
-
   def player_for_next_move
     return starter if self.started?
 
     return TicTacToeGame.new(player_wise_attempts).next_player_for_attempt || starter
   end
+
+  private
+
+
 
   def attempts_for_player(player)
     gameplay_attempts.where(user: player).map(&:attempt_identifier)
