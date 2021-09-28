@@ -36,6 +36,7 @@ class Game < ApplicationRecord
     state[starter.id] = attempts_for_player(starter)
     state[participator.id] = attempts_for_player(participator) if participator
     state[:user_for_current_attempt] = [:started, :in_progress].include?(self.status.to_sym) ? player_for_next_move : nil
+    state[:winner] = winner
 
     state
   end
@@ -53,8 +54,13 @@ class Game < ApplicationRecord
     return TicTacToeGame.new(player_wise_attempts).next_player_for_attempt || starter
   end
 
-  private
+  def winner
+    return nil unless status == 'finished_with_result'
 
+    TicTacToeGame.new(player_wise_attempts).winner
+  end
+
+  private
 
 
   def attempts_for_player(player)

@@ -40,7 +40,7 @@ class TicTacToeGame
     raise 'Game not finished' if [:started, :in_progress].include?(current_game_status)
     return nil if current_game_status == :drawn
 
-    @player_attempts.select{|player, attempt| has_winning_combinations?(player) }.keys.first
+    @player_attempts.select{|player, attempts| has_winning_combinations?(attempts) }.keys.first
   end
 
   def next_player_for_attempt
