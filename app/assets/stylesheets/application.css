@@ -14,17 +14,12 @@
  *= require_self
  */
 
- body {
+body {
   background-image: linear-gradient(90deg, #00beff, #005fff);
 }
 
 #main {
   background-image: linear-gradient(90deg, #000, #17171f);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  position: absolute;
   top: 50%;
   left: 50%;
   height: 300px;
@@ -32,13 +27,14 @@
   box-shadow: 0 0 15px #000;
 }
 
+.status {
+  background-color: blue;
+  color: white;
+  font-variant: bold;
+}
+
 #main #disp {
   background: none;
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  position: absolute;
   top: 110%;
   left: 50%;
   border: none;
@@ -55,6 +51,8 @@
       cursor: pointer;
     }
   }
+
+
 }
 
 .spot {

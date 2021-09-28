@@ -16,7 +16,14 @@ const TicTacToe= ({game}) => {
             <br/><br/><br/>
 
             <div id="main">
-              { (game.game.status == 'started' || game.game.status == 'in_progress') &&  <div>{game.state.user_for_current_attempt.email}'s TURN</div>}
+              <div className='status'>
+                {(game.game.status == 'finished_with_noresult') &&  <div>It's a DRAW</div>}
+                {(game.game.status == 'finished_with_result') &&  <div>{game.state.winner.email} WINS</div>}
+                {(['started', 'in_progress'].includes(game.game.status)) &&  <div>{game.state.user_for_current_attempt.email}'s TURN</div>}
+
+
+              </div>
+
               <Container>
                 <Row className='row-cols-3'>
                   {[1,2,3,4,5,6,7,8,9].map(index => {
