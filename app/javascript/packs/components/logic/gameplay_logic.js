@@ -3,6 +3,7 @@ import { kea } from 'kea'
 const gameplayLogic = kea({
   actions: {
     loadGame: (gameId) => (gameId),
+    submitAttempt: (spotIndex) => (spotIndex),
     setGame: (game) => (game),
     setFetchError: (error) => ({ error }),
     receivedGameUpdate: (game) => (game)
@@ -27,11 +28,12 @@ const gameplayLogic = kea({
 
   listeners: ({ actions, values }) => ({
     loadGame: async () => {
+      console.log("GAMEPLAY LISTENER MAKING API CALL");
       const url = `http://localhost:3000/api/v1/games/${values.gameId}`
 
       const response = await window.fetch(url)
       const json = await response.json()
-      console.log("GAMEPLAY LISTENER MAKING API CALL");
+
       console.log(response.status)
       console.log(json);
 
@@ -39,6 +41,24 @@ const gameplayLogic = kea({
         actions.setGame(json);
       } else {
         actions.setFetchError(json.message);
+      }
+    },
+
+    submitAttempt: async (spotIndex) => {
+      console.log("LISTENER MAKING API CALL TO SUBMIT PLAYER ATTEMPT");
+      const url = `http://localhost:3000/api/v1/games/${values.gameId}/player_attempt`;
+      const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+
+      const requestOptions = { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrf }, body: JSON.stringify({attempt_identifier: spotIndex}) };
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
+
+      console.log(response.status)
+
+      if (response.status === 200) {
+        console.log('attempts submitted');
+      } else {
+        console.log(response.data);
       }
     }
   }),

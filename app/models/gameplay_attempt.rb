@@ -2,6 +2,8 @@ class GameplayAttempt < ApplicationRecord
   belongs_to :user
   belongs_to :game
 
+  validates :attempt_identifier, presence: true
+
   after_commit :bradcast_game_state, on: [:create]
 
   private

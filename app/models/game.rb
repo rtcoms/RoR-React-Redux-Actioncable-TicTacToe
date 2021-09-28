@@ -11,7 +11,7 @@ class Game < ApplicationRecord
     state = {}
     state[starter.id] = gameplay_attempts.where(user: starter).map(&:attempt_identifier)
     state[participator.id] = gameplay_attempts.where(user: participator).map(&:attempt_identifier) if participator
-    state[:user_for_current_attempt] = player_for_next_move
+    state[:user_for_current_attempt] = starter && participator ? player_for_next_move : nil
 
     state
   end

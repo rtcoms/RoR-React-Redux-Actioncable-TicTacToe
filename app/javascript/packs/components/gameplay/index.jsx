@@ -4,11 +4,8 @@ import PropTypes from 'prop-types';
 import { Link, useParams } from "react-router-dom";
 import { useValues, useActions } from 'kea';
 import gameplayLogic from '../logic/gameplay_logic.js';
-import ActionCable from "actioncable";
 import { ActionCableProvider, ActionCableConsumer } from '@thrash-industries/react-actioncable-provider';
 import TicTacToe from './TicTacToe.jsx'
-
-// const cable = ActionCable.createConsumer("ws://localhost:3000/websocket");
 
 const Gameplay= () => {
   let { gameId } = useParams();
@@ -23,7 +20,6 @@ const Gameplay= () => {
   };
 
   useEffect(() => {
-    // Update the document title using the browser API
     loadGame(gameId);
   }, []);
 

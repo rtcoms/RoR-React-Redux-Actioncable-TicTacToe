@@ -54,6 +54,11 @@
   height: 100px;
 }
 
+.boxes {
+  height: 100%;
+  width: 100%;
+}
+
 .checkedOrange {
   background: #ffa500 !important;
 }

@@ -20,4 +20,11 @@ class Api::V1::GamesController < ApplicationController
 
     render json: @game, status: :ok
   end
+
+  def player_attempt
+    @game = Game.find(params[:id])
+    @game.gameplay_attempts.create!(user: current_user, attempt_identifier: params[:attempt_identifier])
+
+    render json: {}, status: :ok
+  end
 end

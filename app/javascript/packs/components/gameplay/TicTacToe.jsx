@@ -12,10 +12,11 @@ const TicTacToe= ({game}) => {
             <h1>Tic-Tac_Toe Game # {game.game.id}</h1>
             <b>starter player moves: {game.state[game.game.starter_id]}</b><br/>
             <b>participator player moves: {game.state[game.game.participator_id]}</b><br/>
+
             <br/><br/><br/>
 
             <div id="main">
-              <input id="disp" value="TURN" readOnly />
+              <input id="disp" value={game.state.user_for_current_attempt.email} readOnly />'s TURN
               <Container>
                 <Row className='row-cols-3'>
                   {[1,2,3,4,5,6,7,8,9].map(index => {

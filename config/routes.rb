@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/websocket'
   namespace :api do
     namespace :v1 do
-      resources :games
+      resources :games do
+        member do
+          post 'player_attempt'
+        end
+      end
       get '/current_user' => 'users#profile'
     end
   end
