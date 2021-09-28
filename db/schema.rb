@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_25_180803) do
+ActiveRecord::Schema.define(version: 2021_09_28_085737) do
 
   create_table "gameplay_attempts", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2021_09_25_180803) do
     t.integer "participator_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status", default: 0, null: false
     t.index ["participator_id"], name: "index_games_on_participator_id"
     t.index ["starter_id"], name: "index_games_on_starter_id"
   end
