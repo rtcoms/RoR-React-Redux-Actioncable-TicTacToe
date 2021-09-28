@@ -24,7 +24,8 @@ class Api::V1::GamesController < ApplicationController
   def player_attempt
     @game = Game.find(params[:id])
     @game.gameplay_attempts.create!(user: current_user, attempt_identifier: params[:attempt_identifier])
-
+    @game.status = :in_progress
+    @game.save!
     render json: {}, status: :ok
   end
 end

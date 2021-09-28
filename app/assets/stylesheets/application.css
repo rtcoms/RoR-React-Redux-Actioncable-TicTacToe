@@ -52,6 +52,7 @@
 
     :hover {
       background-color: green;
+      cursor: pointer;
     }
   }
 }
