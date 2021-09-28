@@ -2,14 +2,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { resetContext, Provider } from 'kea'
+import { Provider } from 'kea'
 import PropTypes from 'prop-types'
 import Gamelisting from './components/gamelisting/index.jsx';
 import Gameplay from './components/gameplay/index.jsx';
 import { useUser } from './helper.js';
 import UserContext from './userContext.js'
-// export const UserContext = React.createContext();
-
 
 const App = props => {
   const { currentUser, isLoading, isError } = useUser();
@@ -17,7 +15,7 @@ const App = props => {
   if (isLoading) return <div>loading...</div>
 
   return (<div>
-    <h1>Current User: {currentUser.email}</h1>
+    <h3>Current User: {currentUser.email}</h3>
     <Provider>
       <UserContext.Provider value={currentUser}>
         <Router>

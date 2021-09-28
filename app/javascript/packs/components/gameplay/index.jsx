@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { useValues, useActions } from 'kea';
 import gameplayLogic from '../logic/gameplay_logic.js';
 import { ActionCableProvider, ActionCableConsumer } from '@thrash-industries/react-actioncable-provider';
-import TicTacToe from './TicTacToe.jsx'
+import TicTacToe from './TicTacToe.jsx';
 
 const Gameplay= () => {
   let { gameId } = useParams();
@@ -36,8 +36,8 @@ const Gameplay= () => {
                 onDisconnected={() => console.log('Action cable disconnected')}
                 onRejected={() => console.log('Action cable rejected')} >
                 <br/><br/><br/>
-
                 <TicTacToe game={game}/>
+                <hr/>
                 <Link to="/app/games">Games Listing</Link>
                 </ActionCableConsumer>
             </ActionCableProvider>

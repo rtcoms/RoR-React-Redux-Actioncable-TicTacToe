@@ -10,8 +10,8 @@ const TicTacToe= ({game}) => {
 
   return (<React.Fragment>
             <h1>Tic-Tac_Toe Game # {game.game.id}</h1>
-            <b>starter player moves: {game.state[game.game.starter_id]}</b><br/>
-            <b>participator player moves: {game.state[game.game.participator_id]}</b><br/>
+            <b>starter player moves: {game.state[game.game.starter_id].join(',')}</b><br/>
+            <b>participator player moves: {game.state[game.game.participator_id].join(',')}</b><br/>
 
             <br/><br/><br/>
 

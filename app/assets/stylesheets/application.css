@@ -22,7 +22,6 @@ body {
   background-image: linear-gradient(90deg, #000, #17171f);
   top: 50%;
   left: 50%;
-  height: 300px;
   width: 300px;
   box-shadow: 0 0 15px #000;
 }
