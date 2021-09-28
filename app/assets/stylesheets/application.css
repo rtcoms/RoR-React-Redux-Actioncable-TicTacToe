@@ -17,6 +17,7 @@
  body {
   background-image: linear-gradient(90deg, #00beff, #005fff);
 }
+
 #main {
   background-image: linear-gradient(90deg, #000, #17171f);
   -moz-transform: translate(-50%, -50%);
@@ -30,6 +31,7 @@
   width: 300px;
   box-shadow: 0 0 15px #000;
 }
+
 #main #disp {
   background: none;
   -moz-transform: translate(-50%, -50%);
@@ -44,6 +46,14 @@
   font-family: monospace;
   font-size: 25px;
   outline: none;
+
+  button {
+    background-color: #000;
+
+    :hover {
+      background-color: green;
+    }
+  }
 }
 
 .spot {
@@ -52,12 +62,22 @@
   border-style: solid;
   color: #fff;
   height: 100px;
+  width: 100px;
+  padding: 0;
 }
 
 .boxes {
   height: 100%;
   width: 100%;
+  border: none;
+
+  background-color: #000;
 }
+
+.boxes:hover {
+  background-color: green;
+}
+
 
 .checkedOrange {
   background: #ffa500 !important;

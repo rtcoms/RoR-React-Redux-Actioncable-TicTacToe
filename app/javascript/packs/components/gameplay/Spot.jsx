@@ -11,19 +11,19 @@ const Spot= ({spotIndex, game}) => {
   // console.log(currentUser);
 
   if(game.state[game.game.starter_id].includes(spotIndex) ) {
-    return <div className="boxes checkedOrange">{spotIndex}</div>;
+    return <div className="boxes checkedOrange"></div>;
   }
 
   if(game.state[game.game.participator_id].includes(spotIndex)) {
-    return <div className="boxes checkedWhite">{spotIndex}</div>;
+    return <div className="boxes checkedWhite"></div>;
   }
 
   if(currentUser.id !== game.state.user_for_current_attempt.id) {
-    return <div className="boxes">Inactive {spotIndex}</div>;
+    return <div className="boxes"></div>;
   }
 
   if(currentUser.id === game.state.user_for_current_attempt.id) {
-    return <button className="boxes" onClick={(e) => submitAttempt(spotIndex) }>Attempt {spotIndex}</button>;
+    return <button className="boxes" onClick={(e) => submitAttempt(spotIndex) }></button>;
   }
 }
 
