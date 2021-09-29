@@ -15,7 +15,7 @@ const Spot= ({spotIndex, game}) => {
   }
 
   if(game.state[game.game.participator_id].includes(spotIndex)) {
-    return <div className="boxes checkedWhite"></div>;
+    return <div className="boxes checkedPurple"></div>;
   }
 
   if(['finished_with_result', 'finished_without_result'].includes(game.game.status)) {

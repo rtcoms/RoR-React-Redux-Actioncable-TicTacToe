@@ -78,9 +78,14 @@ body {
 
 
 .checkedOrange {
-  background: #ffa500 !important;
+  background: #ffa500;
 }
+
 .checkedWhite {
-  background: #fff !important;
+  background: #fff;
+}
+
+.checkedPurple {
+  background: rgb(135, 7, 194);
 }
 
