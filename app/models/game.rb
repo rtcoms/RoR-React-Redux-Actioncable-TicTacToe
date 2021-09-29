@@ -8,7 +8,6 @@ class Game < ApplicationRecord
 
   scope :active, -> { where(status: [:started, :in_progress])}
   scope :finished, -> { where(status: [:finished_with_result, :finished_with_noresult]) }
-
   scope :available_for_user, ->(user) { waiting_for_participants.where(participator: nil).where.not(starter: user) }
   scope :associated_with_user, ->(user) { where(starter: user).or(Game.where(participator: user)) }
 
@@ -68,6 +67,6 @@ class Game < ApplicationRecord
 
 
   def attempts_for_player(player)
-    gameplay_attempts.where(user: player).map(&:attempt_identifier)
+    gameplay_attempts.where(user: player).pluck(:attempt_identifier)
   end
 end
