@@ -2,10 +2,12 @@ class Api::V1::GamesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @active_for_user = Game.active_for_user(current_user)
+    @active_for_user = current_user.games.active
     @available_for_user = Game.available_for_user(current_user)
+    @finished_for_user = current_user.games.finished
+    @waiting_for_participants = current_user.games.waiting_for_participants
 
-    render json: { active: @active_for_user, available: @available_for_user}, status: :ok
+    render json: { active: @active_for_user, finished: @finished_for_user, available: @available_for_user, waiting_for_participants: @waiting_for_participants}, status: :ok
   end
 
   def show
@@ -21,11 +23,16 @@ class Api::V1::GamesController < ApplicationController
     render json: @game, status: :ok
   end
 
+  def join
+    @game = Game.find(params[:id])
+
+    JoinGame.call(game: @game, player: current_user)
+
+    render json: {}, status: :ok
+  end
+
   def player_attempt
     @game = Game.find(params[:id])
-    # @game.gameplay_attempts.create!(user: current_user, attempt_identifier: params[:attempt_identifier])
-    # @game.status = :in_progress
-    # @game.save!
 
     MakeGameAttempt.call(game: @game, player: current_user, gameplay_strategy: TicTacToeGame, attempt_identifier: params[:attempt_identifier])
 

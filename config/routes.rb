@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :games do
         member do
           post 'player_attempt'
+          post 'join'
         end
       end
       get '/current_user' => 'users#profile'

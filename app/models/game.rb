@@ -6,8 +6,12 @@ class Game < ApplicationRecord
   belongs_to :participator, class_name: 'User', optional: true
   has_many :gameplay_attempts, dependent: :destroy
 
-  scope :active_for_user, ->(user) { where(starter: user).or(Game.where(participator: user)) }
-  scope :available_for_user, ->(user) { where(participator: nil).where.not(starter: user) }
+  scope :active, -> { where(status: [:started, :in_progress])}
+  scope :finished, -> { where(status: [:finished_with_result, :finished_with_noresult]) }
+
+  scope :available_for_user, ->(user) { waiting_for_participants.where(participator: nil).where.not(starter: user) }
+  scope :associated_with_user, ->(user) { where(starter: user).or(Game.where(participator: user)) }
+
 
   aasm column: :status, enum: true do
     state :waiting_for_participants, initial: true

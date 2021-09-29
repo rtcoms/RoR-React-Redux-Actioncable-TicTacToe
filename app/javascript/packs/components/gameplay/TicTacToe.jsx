@@ -17,8 +17,8 @@ const TicTacToe= ({game}) => {
 
             <div id="main">
               <div className='status'>
-                {(game.game.status == 'finished_with_noresult') &&  <div>It's a DRAW</div>}
-                {(game.game.status == 'finished_with_result') &&  <div>{game.state.winner.email} WINS</div>}
+                {(game.game.status == 'finished_with_noresult') &&  <div><h2><b>It's a DRAW</b></h2></div>}
+                {(game.game.status == 'finished_with_result') &&  <div><h2><b>{game.state.winner.email} WINS</b></h2></div>}
                 {(['started', 'in_progress'].includes(game.game.status)) &&  <div>{game.state.user_for_current_attempt.email}'s TURN</div>}
 
 

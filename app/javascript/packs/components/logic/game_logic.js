@@ -4,6 +4,7 @@ const gameLogic = kea({
   actions: {
     loadGames: true,
     createGame: true,
+    joinGame: (gameId) => (gameId),
     setGames: (games) => (games),
     setFetchError: (error) => ({ error }),
     addGame: (game) => (game)
@@ -17,7 +18,7 @@ const gameLogic = kea({
         console.log(game);
         console.log('GAME ADDED');
 
-        return {...state, active: [...state.active, game]};
+        return {...state, waiting_for_participants: [...state.waiting_for_participants, game]};
       }
     }],
     isLoading: [true, {
@@ -53,13 +54,33 @@ const gameLogic = kea({
       const requestOptions = { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrf } };
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      console.log("LISTENER MAKING API CALL TO CREATE GAME");
+      console.log("CREATING GAME");
       console.log(response.status)
       console.log(data);
       if (response.status === 200) {
         actions.addGame(data);
       } else {
         actions.setFetchError(data.message);
+      }
+
+    },
+
+    joinGame: async (gameId) => {
+      console.log("JOINING GAME");
+      console.log(gameId);
+      const url = `http://localhost:3000/api/v1/games/${gameId}/join`;
+      const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+      const requestOptions = { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrf } };
+
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
+
+      console.log(response.status)
+      console.log(data);
+      if (response.status === 200) {
+        // reiderct to game page
+      } else {
+        alert('oops! Some error occured');
       }
 
     }
