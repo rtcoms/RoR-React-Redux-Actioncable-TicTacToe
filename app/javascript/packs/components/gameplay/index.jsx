@@ -38,7 +38,6 @@ const Gameplay= () => {
                 <br/><br/><br/>
                 <TicTacToe game={game}/>
                 <hr/>
-                <Link to="/app/games">Games Listing</Link>
                 </ActionCableConsumer>
             </ActionCableProvider>
 

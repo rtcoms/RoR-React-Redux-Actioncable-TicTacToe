@@ -9,8 +9,8 @@ class MakeGameAttempt
 
     tictactoe_strategy = strategy.new(game.player_wise_attempts)
 
-    context.fail!(message: "Game can't be played.") if [:waiting_for_participants, :finished_with_result, :finished_with_noresult].include?(game.status)
-    context.fail!(message: "Player cannot make 2 attempts in a row") if game.player_for_next_move != player
+    context.fail!(error: "Game can't be played.") if [:waiting_for_participants, :finished_with_result, :finished_with_noresult].include?(game.status)
+    context.fail!(error: "Player cannot make 2 attempts in a row") if game.player_for_next_move != player
 
     ActiveRecord::Base.transaction do
       game.gameplay_attempts.create!(user: player, attempt_identifier: attempt_identifier)

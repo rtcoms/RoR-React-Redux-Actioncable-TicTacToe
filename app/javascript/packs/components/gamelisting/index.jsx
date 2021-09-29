@@ -19,6 +19,8 @@ const Gamelisting = () => {
 
   return (<React.Fragment>
             <h1>Welcome to Games listing</h1>
+            <NewGame />
+            <hr />
             <h3>Games In progress</h3>
             {games.active.map(game => (
                 <React.Fragment>
@@ -38,9 +40,10 @@ const Gamelisting = () => {
             <h3>Games you can join</h3>
             {games.available.map(game => (
                 <React.Fragment>
-                  <div><span>Game #{game.id}</span> <JoinGame gameId={game.id}/><br/></div>
+                  <Link to={`/app/gameplay/${game.id}`} key={`game-${game.id}`}>Game #{game.id}</Link><br/>
                 </React.Fragment>
              ))}
+             <hr/>
 
             <h3>Games created by you waiting for participations</h3>
             {games.waiting_for_participants.map(game => (
@@ -48,10 +51,7 @@ const Gamelisting = () => {
                   <div><span>Game #{game.id}</span><br/></div>
                 </React.Fragment>
              ))}
-
             <hr/>
-
-            <NewGame />
 
           </React.Fragment>);
 }

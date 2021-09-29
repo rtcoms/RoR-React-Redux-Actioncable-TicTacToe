@@ -12,6 +12,9 @@ class Api::V1::GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+
+    JoinGame.call(game: @game, player: current_user)
+
     @game_state = Game.find(params[:id]).state
 
     render json: {game: @game, state: @game_state }, status: :ok
@@ -21,14 +24,6 @@ class Api::V1::GamesController < ApplicationController
     @game = Game.create!(starter: current_user)
 
     render json: @game, status: :ok
-  end
-
-  def join
-    @game = Game.find(params[:id])
-
-    JoinGame.call(game: @game, player: current_user)
-
-    render json: {}, status: :ok
   end
 
   def player_attempt

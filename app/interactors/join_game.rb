@@ -5,8 +5,8 @@ class JoinGame
     game = context.game
     player = context.player
 
-    context.fail!(message: "Game already started with all participants.") unless game.waiting_for_participants?
-    context.fail!(message: "Creator can't join game as participants") if game.starter == player
+    context.fail!(error: "Game already started with all participants.") unless game.waiting_for_participants?
+    context.fail!(error: "Creator can't join game as participants") if game.starter == player
 
     ActiveRecord::Base.transaction do
 

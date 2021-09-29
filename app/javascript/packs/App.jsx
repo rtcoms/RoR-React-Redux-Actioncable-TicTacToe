@@ -8,6 +8,7 @@ import Gamelisting from './components/gamelisting/index.jsx';
 import Gameplay from './components/gameplay/index.jsx';
 import { useUser } from './helper.js';
 import UserContext from './userContext.js'
+import { Link } from "react-router-dom";
 
 const App = props => {
   const { currentUser, isLoading, isError } = useUser();
@@ -15,10 +16,11 @@ const App = props => {
   if (isLoading) return <div>loading...</div>
 
   return (<div>
-    <h3>Current User: {currentUser.email}</h3>
     <Provider>
       <UserContext.Provider value={currentUser}>
         <Router>
+          <h3>Current User: {currentUser.email}</h3>
+          <Link to="/app/games">Games Listing</Link>
           <Route path="/app/games" exact component={Gamelisting} />
           <Route path="/app/gameplay/:gameId" exact component={Gameplay} />
         </Router>
